@@ -7,6 +7,7 @@
 	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
 		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.11.xsd
 		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
-		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.11.xsd" changeLogId="94280ef3-cd2d-4749-8951-6e8d6c8f1d79">
+		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.11.xsd"
+	changeLogId="94280ef3-cd2d-4749-8951-6e8d6c8f1d79">
     <includeAll path="./changesets"/>
 </databaseChangeLog>
