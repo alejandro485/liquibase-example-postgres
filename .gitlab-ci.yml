@@ -28,7 +28,7 @@ prepare:
 
 deploy:
     stage: deploy
-    image: liquibase:4.11
+    image: liquibase/liquibase:4.11
     script:
       - cat liquibase.properties
       - liquibase status --verbose
