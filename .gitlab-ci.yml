@@ -21,6 +21,7 @@ prepare:
       paths:
         - .env
         - liquibase.properties
+      expire_in: 5 mins
     only:
       - develop
       - staging
@@ -30,7 +31,6 @@ deploy:
     stage: deploy
     image: liquibase/liquibase:4.11
     script:
-      - cat liquibase.properties
       - liquibase status --verbose
       - liquibase update-sql
       - liquibase update
