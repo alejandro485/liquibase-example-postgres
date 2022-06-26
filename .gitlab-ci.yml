@@ -12,6 +12,7 @@ prepare:
       - doppler secrets download --no-file --format env > .env
       - source ./.env
       - export $(cut -d= -f1 .env)
+      - chmod +x generate_liquibase_properties.sh
       - ./generate_liquibase_properties.sh
     environment:
       name: $CI_COMMIT_REF_NAME
