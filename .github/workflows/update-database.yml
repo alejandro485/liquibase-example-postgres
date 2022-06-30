@@ -39,7 +39,7 @@ jobs:
   update:
     runs-on: self-hosted
     container: liquibase/liquibase:4.11
-    needs: [ prepare ]
+    needs: prepare
     steps:
       - name: Get Property Files
         uses: actions/download-artifact@v3
