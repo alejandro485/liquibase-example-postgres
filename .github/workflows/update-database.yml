@@ -24,8 +24,8 @@ jobs:
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
         run: |
-          echo 'doppler ->' $DOPPLER_TOKEN
           doppler secrets download --no-file --format env > .env
+          cat .env
           source ./.env
           export $(cut -d= -f1 .env)
           ./generate_liquibase_properties.sh
