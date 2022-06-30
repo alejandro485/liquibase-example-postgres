@@ -16,22 +16,23 @@ jobs:
         uses: actions/checkout@v3
       - name: Install doppler
         run: |
-          apt-get update
-          apt-get install -y curl gnupg
+          apt-get update && apt-get install -y curl gnupg
           curl -Ls --tlsv1.2 --proto "=https" --retry 3 https://cli.doppler.com/install.sh | sh
       - name: Generate Env File
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
-        run: |
-          doppler secrets download --no-file --format env > .env
-          cat .env
-      - name: Add New Variables
+        run: doppler secrets download --no-file --format env > .env
+      - name: Export Env File Variables
         uses: cardinalby/export-env-action@v1
         with:
           envFile: '.env'
-      - name: Generate Properties File
+      - name: Generate Liquibase Properties File
         run: |
           chmod +x generate_liquibase_properties.sh
           ./generate_liquibase_properties.sh
-          cat liquibase.properties
-
+      - name: Upload Liquibase Properties File
+        uses: actions/upload-artifact@v3
+        with:
+          name: liquibase-properties-file
+          path: liquibase.properties
+          retention-days: 1
