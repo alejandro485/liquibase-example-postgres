@@ -21,8 +21,9 @@ jobs:
           chmod +x generate_liquibase_properties.sh
       - name: Generate Files
         env:
-          DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
+          DOPPLER_TOKEN: ${{ env.DOPPLER_TOKEN }}
         run: |
+          echo $DOPPLER_TOKEN
           doppler secrets download --no-file --format env > .env
           source ./.env
           export $(cut -d= -f1 .env)
