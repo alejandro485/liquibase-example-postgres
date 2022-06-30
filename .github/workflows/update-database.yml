@@ -9,7 +9,9 @@ on:
 jobs:
   prepare:
     runs-on: self-hosted
-    container: ubuntu:22.10
+    container:
+      image: ubuntu:22.10
+      options: --user root
     environment: ${{ github.ref_name }}
     steps:
       - uses: actions/checkout@v3
@@ -36,13 +38,11 @@ jobs:
           name: liquibase-properties-file
           path: liquibase.properties
           retention-days: 1
-      - name: Clean up GitHub workspace
-        uses: docker://ubuntu:latest
-        with:
-          args: find /github/workspace/. -name . -o -prune -exec rm -rf -- {} +
   update:
     runs-on: self-hosted
-    container: liquibase/liquibase:4.11
+    container:
+      image: liquibase/liquibase:4.11
+      options: --user root
     environment: ${{ github.ref_name }}
     needs: prepare
     steps:
