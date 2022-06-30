@@ -55,5 +55,20 @@ jobs:
           liquibase status --verbose
           liquibase update-sql
           liquibase update
+  tagging:
+    runs-on: self-hosted
+    container:
+      image: liquibase/liquibase:4.11
+      options: --user root
+    environment: ${{ github.ref_name }}
+    needs: update
+    steps:
+      - uses: actions/checkout@v3
+      - name: Get Liquibase Properties Files
+        uses: actions/download-artifact@v3
+        with:
+          name: liquibase-properties-file
+      - name: Tag Database Change
+        run: |
+          liquibase tag $GITHUB_SHA
 
- 
