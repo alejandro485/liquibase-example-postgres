@@ -52,7 +52,8 @@ jobs:
           name: liquibase-properties-file
       - name: Update Database
         run: |
-          ls -a
-          cat liquibase.properties
+          liquibase status --verbose
+          liquibase update-sql
+          liquibase update
 
  
