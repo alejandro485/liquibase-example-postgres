@@ -54,6 +54,7 @@ jobs:
           path: liquibase.properties
       - name: Update Database
         run: |
+          ls -a
           cat liquibase.properties
 
  
