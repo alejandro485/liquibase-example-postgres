@@ -30,6 +30,7 @@ jobs:
         run: |
           chmod +x generate_liquibase_properties.sh
           ./generate_liquibase_properties.sh
+          unlink .env
       - name: Upload Liquibase Properties File
         uses: actions/upload-artifact@v3
         with:
@@ -39,6 +40,7 @@ jobs:
   update:
     runs-on: self-hosted
     container: liquibase/liquibase:4.11
+    environment: ${{ github.ref_name }}
     needs: prepare
     steps:
       - name: Checkout
