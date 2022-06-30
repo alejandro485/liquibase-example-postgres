@@ -12,8 +12,7 @@ jobs:
     container: ubuntu:22.10
     environment: ${{ github.ref_name }}
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
       - name: Install doppler
         run: |
           apt-get update && apt-get install -y curl gnupg
@@ -30,7 +29,6 @@ jobs:
         run: |
           chmod +x generate_liquibase_properties.sh
           ./generate_liquibase_properties.sh
-          unlink .env
       - name: Upload Liquibase Properties File
         uses: actions/upload-artifact@v3
         with:
@@ -43,9 +41,8 @@ jobs:
     environment: ${{ github.ref_name }}
     needs: prepare
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-      - name: Get Property Files
+      - uses: actions/checkout@v3
+      - name: Get Liquibase Properties Files
         uses: actions/download-artifact@v3
         with:
           name: liquibase-properties-file
