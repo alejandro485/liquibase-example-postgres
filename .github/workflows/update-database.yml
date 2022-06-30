@@ -31,7 +31,6 @@ jobs:
         run: |
           chmod +x generate_liquibase_properties.sh
           ./generate_liquibase_properties.sh
-          unlink .env
       - name: Upload Liquibase Properties File
         uses: actions/upload-artifact@v3
         with:
@@ -51,7 +50,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: liquibase-properties-file
-          path: liquibase.properties
       - name: Update Database
         run: |
           ls -a
