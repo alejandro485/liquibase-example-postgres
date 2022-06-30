@@ -23,6 +23,7 @@ jobs:
         env:
           DOPPLER_TOKEN: ${{ secrets.DOPPLER_TOKEN }}
         run: |
+          echo ${{ secrets }}
           echo 'doppler ->' $DOPPLER_TOKEN
           doppler secrets download --no-file --format env > .env
           source ./.env
