@@ -36,3 +36,17 @@ jobs:
           name: liquibase-properties-file
           path: liquibase.properties
           retention-days: 1
+  update:
+    runs-on: self-hosted
+    container: liquibase/liquibase:4.11
+    needs: [ prepare ]
+    steps:
+      - name: Get Property Files
+        uses: actions/download-artifact@v3
+        with:
+          name: liquibase-properties-file
+      - name: Update Database
+        run: |
+          cat liquibase.properties
+
+ 

@@ -19,7 +19,6 @@ prepare:
       name: $CI_COMMIT_REF_NAME
     artifacts:
       paths:
-        - .env
         - liquibase.properties
       expire_in: 5 mins
     only:
