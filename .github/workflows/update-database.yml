@@ -13,5 +13,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - apt update && apt install -y curl gnupg
+      - name: Install doppler
+        run: |
+          apt-get update
+          apt-get install -y curl gnupg
 
